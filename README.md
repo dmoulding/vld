@@ -1,5 +1,11 @@
 # Visual Leak Detector [![Build status](https://ci.appveyor.com/api/projects/status/0kvft8un16e80toj/branch/master?svg=true)](https://ci.appveyor.com/project/KindDragon/vld/branch/master) <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=N3QTYHP9LH6UY&amp;lc=GB&amp;item_name=Visual%20Leak%20Detector&amp;currency_code=USD&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted" target="_blank"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
 
+## ⚠️ Project Status: Inactive ⚠️
+
+**This project is currently not in active development. The author is focusing on Linux development and is not maintaining this project at the moment.**
+
+**🔍 Seeking Maintainers: If you are interested in becoming a maintainer and contributing to this project, please feel free to reach out. Your contributions would be greatly appreciated!**
+
 ## Introduction
 
 Visual C++ provides built-in memory leak detection, but its capabilities are minimal at best. This memory leak detector was created as a free alternative to the built-in memory leak detector provided with Visual C++. Here are some of Visual Leak Detector's features, none of which exist in the built-in detector:
