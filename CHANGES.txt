@@ -1,6 +1,181 @@
-Visual Leak Detector (VLD) Version 1.9h (beta)
+Visual Leak Detector (VLD) Version 2.5.1
+
 
   Change Log / Release Notes
+
+2.5.1 (30 January 2017)
+----------------------------
+  Enhancements:
+  + PDB added to installer.
+
+  Bugs Fixed:
+  + Fix ntdll loader patch for Windows 10 (1607) Anniversary Update causing crashes (thanks to ioannis-e).
+  + Vld dll loading order fixed with MFC.
+  + Supressible msgboxes in setup with cmdline /silent /suppressmsgboxes.
+
+2.5 (09 January 2016)
+----------------------------
+  Enhancements:
+  + VS2015 support added.
+  + Windows 10 support added.
+  + Support MFC 12 MBCS (thanks to mnissl).
+  + VLD config through env. vars (thanks to akaStiX).
+  + Support detection DllMain allocations (thanks to ioannis-e).
+  + Add option to skip reporting crt startup allocations as memory leaks (thanks to ioannis-e).
+  + Improve the vld.ini searching from additional locations (thanks to ioannis-e).
+  + Changed implementation of FastCallStack::getStackTrace for 32-bit code.
+
+  Bugs Fixed:
+  + Fix #9519, #9859, #10544, use LoaderLock to serialize any calls which load additional libraries or require access to the Loader Lock (thanks to ioannis-e).
+  + Fix #6359, #10553, fix crashes and failure to register COM dlls where Visual Leak Detector is unloaded before IMalloc interface is released (thanks to ioannis-e).
+  + Fix #10548, vld.ini search path (thanks to ioannis-e).
+  + Fix #10587, Visual Leak Detector reporting strange leaks in CRT module of VC++ (thanks to ioannis-e).
+  + Fix #10588, false positives from CRT in VS2013 with /MTd (thanks to ioannis-e).
+  + Deadlock fixed with StackWalkMethod=safe.
+
+2.4RC2 (07 April 2014)
+----------------------------
+  Enhancements:
+  + VLD will display last internal frame.
+  + Installer also add path for static library.
+
+  Bugs Fixed:
+  + Internal memory leak fixed.
+
+2.4RC (23 March 2014)
+----------------------------
+  Enhancements:
+  + VS2013 support added.
+  + Improved usage in C code.
+  + Setup rewrited to InnoSetup, autopatching common props implemented for VS2008-2013.
+  + Called allocation function added to printed callstack.
+  ! Memory leaks count fixed for case static/dynamic linked MFC.
+  ! Release static linked CRT detection improved (VLD_OPT_RELEASE_CRT_RUNTIME define removed).
+
+  Bugs Fixed:
+  + Memory leaks with static linked CRT fixed for VS2012/2013.
+  + Deadlock fixed and missed memory leaks when dll loading (first appear in version 2.2.2).
+
+2.3 (29 April 2013)
+----------------------------
+  Enhancements:
+  + Windows 8 support added.
+
+  Bugs Fixed:
+  + Memory leaks with duplicate thread id fixed (thanks to jlddodger).
+
+2.2.3 (15 Febrary 2012)
+----------------------------
+  Enhancements:
+  + New option VLD_OPT_RELEASE_CRT_RUNTIME added. Useful only with define VLD_FORCE_ENABLE.
+
+  Bugs Fixed:
+  + Memory leaks with static linking fixed finally.
+
+2.2.2 (18 December 2011)
+----------------------------
+  Bugs Fixed:
+  + Memory leaks with static linking fixed.
+  + Visual Studio C++ 2008/2010 Express Edition compilation fixed.
+  + Hang fixed with GetOpenFileName().
+
+2.2.1 (22 November 2011)
+----------------------------
+  Enhancements:
+  + strdup and _wcsdup functions support added.
+  + Preliminary support for VS 11 added.
+
+  Bugs Fixed:
+  + Low performance after upgrading from VLD v2.1.
+  + Runtime error R6002 fixed because of wrong memory dump format.
+  + version.h fixed in installer.
+  + Some PVS studio warning fixed.
+
+2.2 (21 Jule 2011)
+----------------------------
+  Enhancements:
+  + New functions added: VLDSetReportHook.
+
+  Bugs Fixed:
+  + Resolved call stack printing fixed.
+
+2.2b (8 Jule 2011)
+----------------------------
+  Enhancements:
+  + New functions added: VLDGetLeaksCount, VLDMarkAllLeaksAsReported (see vld.h).
+  + Introduced define called VLD_FORCE_ENABLE that allows one to active VLD even if not running in DEBUG.
+  + Adding Heap Validation.
+  + _aligned... functions and _recalloc support added.
+  + Memory leaks additional statistic added.
+
+  Bugs Fixed:
+  + Issue fixed with loading wrong version of dbghelp.dll on Windows XP and bellow.
+  + VLDReportLeaks with aggregate duplicate links fixed.
+  + CoTaskMemAlloc memory leak detection fixed.
+  + Rare crash at exit on some platforms fixed.
+  + Asserts in release build disabled.
+  + LoaderLock fixed.
+  + LoadLibrary crash fixed with some applications like regsrv32.
+  + Callstack hash fixed with ASLR.
+  + VLDGlobalEnable fixed with new threads.
+  + Option VLD_OPT_MODULE_LIST_INCLUDE fixed.
+
+2.1 (26 March 2011)
+----------------------------
+  Enhancements:
+  + New functions added: VLDGlobalDisable, VLDGlobalEnable, VLDGetOptions,
+    VLDGetReportFilename, VLDSetOptions, VLDSetModulesList,
+    VLDGetModulesList, VLDResolveCallstacks (see vld.h).
+  + Option VLD_OPT_SKIP_HEAPFREE_LEAKS added.
+  + Hash for each leak added
+  + Supported loading symbols from Visual Studio symbol cache directory
+
+  Bugs Fixed:
+  + Improved LdrLoadDll, GetProcAddress hooking on Windows 7.
+  + "HMODULE not founded" bug fixed.
+  + Bugs fixed when VLD off.
+  + Problem fixed with GetModuleHandleW for SxS dll's (mfc*.dll, msvcr*.dll).
+  + Unicode-to-multibyte conversion fixed.
+
+2.1 (26 March 2011)
+----------------------------
+  Enhancements:
+  + New functions added: VLDGlobalDisable, VLDGlobalEnable, VLDGetOptions,
+    VLDGetReportFilename, VLDSetOptions, VLDSetModulesList,
+    VLDGetModulesList, VLDResolveCallstacks (see vld.h).
+  + Option VLD_OPT_SKIP_HEAPFREE_LEAKS added.
+  + Hash for each leak added
+  + Supported loading symbols from Visual Studio symbol cache directory
+
+  Bugs Fixed:
+  + Improved LdrLoadDll, GetProcAddress hooking on Windows 7.
+  + "HMODULE not founded" bug fixed.
+  + Bugs fixed when VLD off.
+  + Problem fixed with GetModuleHandleW for SxS dll's (mfc*.dll, msvcr*.dll).
+  + Unicode-to-multibyte conversion fixed.
+
+2.0b (24 August 2010)
+----------------------------
+  Enhancements:
+  + Added new commands: VLDReportLeaks, VLDRefreshModules, VLDEnableModule,
+    VLDDisableModule, VLDSetReportOptions (see vld.h).
+
+  Bugs Fixed:
+  + Problems with MSVC 2008 SP1 fixed. Thanks to Laurent Lessieux for contributing this patch.
+
+2.0a (13 May 2010)
+----------------------------
+  Enhancements:
+  + Renamed vld dll files.
+
+  Bugs Fixed:
+  + Problem with MSVC 2010 Unicode library fixed.
+
+2.0 (25 April 2010)
+----------------------------
+  Enhancements:
+  + Added support to work with 64-bit applications
+  + Added support to work with Visual Studio 2010
 
 1.9h beta (24 February 2009)
 ----------------------------
@@ -31,7 +206,7 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
   + In multithreaded programs, if the main thread terminates before other
     threads in the process, then Visual Leak Detector may cause an access
     violation while generating the memory leak report.
-    
+
   Known Bugs/Restrictions:
   + Memory allocations made through calls to functions loaded from a DLL using
     delayed loading may not be detected.
@@ -48,17 +223,17 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
     than one copy of the C Runtime DLL into a process at the same time is
     probably a bad idea to begin with).
 
-  
+
 1.9e beta (16 November 2006)
 ----------------------------
   New Features/Enhancements:
   + Added a master on/off switch configuration option to vld.ini that can be
     used to completely disable Visual Leak Detector.
-    
+
   Bugs Fixed:
   + Numerous deadlock situations. The multithread synchronization scheme has
     been completely re-written which should make deadlocks in VLD much less
-    likey to happen.
+    likely to happen.
 
   + An access violation will occur in VLD if GetProcAddress is called to obtain
     an export's address by ordinal, for certain libraries.
@@ -71,7 +246,7 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
   + The copy of vld.ini installed in VLD's installation directory overrides any
     other copies of vld.ini that are created, even copies placed in the
     working directory of the program being debugged.
-    
+
   Known Bugs/Restrictions:
   + Memory allocations made through calls to functions loaded from a DLL using
     delayed loading may not be detected.
@@ -84,7 +259,7 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
     than one copy of the C Runtime DLL into a process at the same time is
     probably a bad idea to begin with).
 
-  
+
 1.9d beta (12 November 2006)
 ----------------------------
   Bugs Fixed:
@@ -107,7 +282,7 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
 
 1.9c beta (6 November 2006)
 ---------------------------
-  New Features/Enhancments:
+  New Features/Enhancements:
   + New NSIS installer makes setting up and using VLD much easier.
 
   + No need to manually copy dbghelp.dll to the right location, VLD will always
@@ -119,7 +294,7 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
     Support has been added, through a new configuration option, to slow down
     the report output for older versions of Visual Studio that have trouble
     when it is written too quickly.
-  
+
   Bugs Fixed:
   + All known compatibilities with Visual Studio 2005 have been eliminated.
 
@@ -162,7 +337,7 @@ Visual Leak Detector (VLD) Version 1.9h (beta)
 
 1.9a beta (9 March 2006)
 ------------------------
-  New Features/Enhancments:
+  New Features/Enhancements:
   + All new leak detection engine detects most, if not all, in-process memory
     leaks, not just leaks from "new" or "malloc", including COM-based leaks.
 

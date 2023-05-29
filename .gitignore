@@ -1,8 +1,22 @@
-Debug
-Release
-C?Debug
-CPP?Debug
-*.ncb
+obj/
+Debug/
+Debug (Unicode)/
+Release/
+Release (Unicode)/
+Win32/
+x64/
+*.vcxproj.user
+*.*sdf
 *.suo
-*.vcproj.*.*.user
-*setup.exe
+ipch/
+setup/vld-*-setup.exe
+setup/Output/
+lib/gtest/msvc/bin/
+_ReSharper.Caches/
+lib/cppformat/bin/
+src/bin/vld.ini
+/src/tests/vld_ComTest/ComTest_i.h
+/src/tests/vld_ComTest/ComTest_p.c
+/src/tests/vld_ComTest/ComTest_i.c
+*.VC.opendb
+*.VC.db
